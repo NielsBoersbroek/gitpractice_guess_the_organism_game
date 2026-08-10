@@ -1,1 +1,11 @@
-/data
+# Ignore all data locally — never push data files to the remote
+/data/*
+# However, I still would like to have a data folder present on the remote repo
+!/data/.gitkeep
+
+# Keep results folders present in the repo but empty until scripts generate output
+/results/figures/*
+!/results/figures/.gitkeep
+
+/results/tables/*
+!/results/tables/.gitkeep
