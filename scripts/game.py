@@ -19,12 +19,27 @@ import numpy as np
 # My Excel is in a different language than English and thus uses
 # ; as a seperator when creating csv files
 organisms = pd.read_csv("data/organism_data.csv", sep = ";")
-# Examine the first five rows
-organisms_head = organisms.head(5)
-print(f"The top 5 lines of the organisms DataFrame:\n{organisms_head}")
-# Examine the number of rows and columns
+
+
+## Picking the mystery organism with numpy -------------------------------------
+
+
+# The number of rows are stored as the first number in .shape output
 organisms_shape = organisms.shape # shape is the equivalent of R's dim()
-print(f"The dimensions of the organisms DataFrame:\n{organisms_shape}")
-# Get column names
-organisms_columns = organisms.columns
-print(f"The columns names of the organisms DataFrame:\n{organisms_columns}")
+count_row = organisms_shape[0]
+# Select a random rownumber. The range should be between 0 and the number of rows,
+# as Python starts counting at 0 and the last number in the range is not included:
+# with 30 rows, count_row would thus be thirthy and the range thus 0-29, which is correct
+random_rownum = np.random.randint(0, count_row)
+
+# Extract the random row from the dataframe. Use .iloc[] to ensure you extract
+# by index, not by label.
+random_row = organisms.iloc[random_rownum]
+
+
+# Playing the game -------------------------------------------------------------
+
+
+# For now, I will only print a hint, development of the game will come later
+gc_percent = random_row["Assembly Stats GC Percent"]
+print(f"Hint: the GC percent of your bacterium is: {gc_percent}%")
