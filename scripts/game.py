@@ -23,7 +23,8 @@ organisms = pd.read_csv("data/organism_data.csv", sep = ";")
 organisms_head = organisms.head(5)
 print("The top 5 lines of the organisms DataFrame:\n", organisms_head)
 # Examine the number of rows and columns
-organisms.shape # shape is the equivalent of R's dim()
+organisms_shape = organisms.shape # shape is the equivalent of R's dim()
+print("The dimensions of the organisms DataFrame:\n", organisms_shape)
 # Get column names
-organisms.columns
-
+organisms_columns = organisms.columns
+print("The columns names of the organisms DataFrame:\n", organisms_columns)
