@@ -21,10 +21,10 @@ import numpy as np
 organisms = pd.read_csv("data/organism_data.csv", sep = ";")
 # Examine the first five rows
 organisms_head = organisms.head(5)
-print("The top 5 lines of the organisms DataFrame:\n", organisms_head)
+print(f"The top 5 lines of the organisms DataFrame:\n{organisms_head}")
 # Examine the number of rows and columns
 organisms_shape = organisms.shape # shape is the equivalent of R's dim()
-print("The dimensions of the organisms DataFrame:\n", organisms_shape)
+print(f"The dimensions of the organisms DataFrame:\n{organisms_shape}")
 # Get column names
 organisms_columns = organisms.columns
-print("The columns names of the organisms DataFrame:\n", organisms_columns)
+print(f"The columns names of the organisms DataFrame:\n{organisms_columns}")
