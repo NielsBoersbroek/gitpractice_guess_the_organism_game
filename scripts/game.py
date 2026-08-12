@@ -6,6 +6,13 @@
 # Conda environment: guess_the_organism
 
 
+## Defining parameters ---------------------------------------------------------
+
+
+MAX_ATTEMPTS = 10
+MIN_LEN_GUESS = 8
+
+
 ## Import modules --------------------------------------------------------------
 
 
@@ -35,11 +42,54 @@ random_rownum = np.random.randint(0, count_row)
 # Extract the random row from the dataframe. Use .iloc[] to ensure you extract
 # by index, not by label.
 random_row = organisms.iloc[random_rownum]
+organism_name = random_row["Organism Name"]
 
 
 # Playing the game -------------------------------------------------------------
 
 
-# For now, I will only print a hint, development of the game will come later
+# Define a function which checks whether the answer was right and returns True or False.
+# Defining this function beforehand makes the code less messy.
+# Also prevent users from being able to win by entering a single letter (e.g. "s").
+# In a better version of this game, I would create a specific message which says
+# something a long the lines of "your answer is too short" - but that would require
+# some more puzzling and is beyond the scope of the current goals
+def check_answer(guess, organism_name):
+    if len(guess) < MIN_LEN_GUESS:
+        is_correct = False 
+    elif guess.upper() in organism_name.upper():
+        is_correct = True
+    else:
+        is_correct = False
+    return is_correct
+
+# Let the user make a first guess. Provide a hint of the GC-percent.
 gc_percent = random_row["Assembly Stats GC Percent"]
-print(f"Hint: the GC percent of your bacterium is: {gc_percent}%")
+guess = input(
+    "Make your first guess which bacterium this could be.\n"
+    f"(Hint: the GC percent of your bacterium is {gc_percent}%): "
+    )
+
+# If this is immediately correct, the process stops here. Use a while loop if the
+# first guess was not correct
+if check_answer(guess, organism_name): # already a Boolean
+    print(
+        "Congrats, you won at your first attempt!\n"
+        f"The answer was {organism_name}."
+        )
+else:
+    trial = 1 # Start at 1 in stead of 0, to be able to print trial number
+    while trial < MAX_ATTEMPTS:
+        guess = input(f"Incorrect! This was attempt number {trial}. Make another guess: ")
+        correct_answer = check_answer(guess, organism_name)
+        if correct_answer: # already a Boolean
+            print(
+                f"Congrats, you guess correct after {trial} attempts.\n"
+                f"The answer was {organism_name}.")
+            break
+        trial += 1 # should be at the end, otherwise incorrect numbers when printing
+    else:
+        print(
+            f"Unfortunately, you did not guess correctly after {trial} attempts.\n"
+            f"The right answer was {organism_name}."
+            )
