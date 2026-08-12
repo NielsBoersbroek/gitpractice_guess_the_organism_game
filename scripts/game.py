@@ -6,18 +6,18 @@
 # Conda environment: guess_the_organism
 
 
-## Defining parameters ---------------------------------------------------------
-
-
-MAX_ATTEMPTS = 10
-MIN_LEN_GUESS = 8
-
-
 ## Import modules --------------------------------------------------------------
 
 
 import pandas as pd
 import numpy as np
+
+
+## Defining parameters ---------------------------------------------------------
+
+
+MAX_ATTEMPTS = 10
+MIN_LEN_GUESS = 8
 
 
 ## Opening data from disk ------------------------------------------------------
