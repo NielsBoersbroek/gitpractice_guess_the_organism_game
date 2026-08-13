@@ -16,7 +16,7 @@ import numpy as np
 ## Defining parameters ---------------------------------------------------------
 
 
-MAX_ATTEMPTS = 10
+MAX_ATTEMPTS = 15
 MIN_LEN_GUESS = 8
 
 
