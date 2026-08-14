@@ -9,3 +9,5 @@
 
 /results/tables/*
 !/results/tables/.gitkeep
+
+# This line was added as a test
