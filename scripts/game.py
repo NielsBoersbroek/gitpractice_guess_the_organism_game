@@ -16,7 +16,7 @@ import numpy as np
 ## Defining parameters ---------------------------------------------------------
 
 
-MAX_ATTEMPTS = 10
+MAX_ATTEMPTS = 5
 MIN_LEN_GUESS = 8
 
 
@@ -80,7 +80,11 @@ if check_answer(guess, organism_name): # already a Boolean
 else:
     trial = 1 # Start at 1 in stead of 0, to be able to print trial number
     while trial < MAX_ATTEMPTS:
-        guess = input(f"Incorrect! This was attempt number {trial}. Make another guess: ")
+        # It can currently say "1 attempts left" , which is gramatically incorrect but I'll leave it for now.
+        guess = input(
+            f"Incorrect! Attempt {trial} of {MAX_ATTEMPTS} - "
+            f"{MAX_ATTEMPTS - trial} attempts remaining. Make another guess: "
+            ) 
         correct_answer = check_answer(guess, organism_name)
         if correct_answer: # already a Boolean
             print(
