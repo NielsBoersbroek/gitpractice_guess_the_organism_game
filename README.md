@@ -19,7 +19,8 @@ guess_the_organism/
 ├── scripts/
 │ └── game.py # the game itself
 ├──  .gitignore
-└── README.md
+├── README.md
+└── LICENSE
 ```
 
 ## Prerequisites
